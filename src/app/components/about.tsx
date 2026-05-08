@@ -6,9 +6,9 @@ const TIMELINE = [
   { y: "2021", t: "First production system", d: "Shipped a contact platform end-to-end. Learned the gap between code that runs and software that ships." },
   { y: "2022", t: "MERN deep-dive", d: "Built half a dozen fullstack applications. Internalized REST, JWT, MongoDB schema design, and Express middleware patterns." },
   { y: "2023", t: "Systems thinking", d: "Studied scalable architecture, indexing strategies, query planning. Started thinking in throughput, not features." },
-  { y: "2024", t: "KDE / Open source", d: "Began contributing upstream. Merge requests reviewed by senior maintainers — the most rigorous code review possible." },
-  { y: "2025", t: "FindHere — flagship", d: "Engineered a high-performance discovery platform with Meilisearch, Cloudinary, JWT, and a Leaflet/Maps frontend." },
-  { y: "2026", t: "AI / LLM frontier", d: "Currently exploring agentic systems, retrieval architectures, and embedding-driven backends." },
+  { y: "2024", t: "KDE / Open source", d: "Began contributing upstream. Merge requests reviewed by senior maintainers, the most rigorous code review possible." },
+  { y: "2025", t: "FindHere — flagship", d: "Engineered a high performance discovery platform with Meilisearch, Cloudinary, JWT, and a Leaflet/Maps frontend." },
+  { y: "2026", t: "AI / LLM frontier", d: "Currently exploring agentic systems, retrieval architectures, and embedding driven backends." },
 ];
 
 export function About() {
@@ -16,7 +16,7 @@ export function About() {
     <section id="about" className="relative py-32 md:py-44">
       <div className="absolute inset-0 dot-bg opacity-30 mask-fade-y" />
       <div className="relative mx-auto max-w-[1400px] px-6 md:px-10">
-        <SectionLabel index="// 01 — origin" title="Engineering as a long, deliberate compound." subtitle="Not a list of frameworks. A trajectory — five years of building, breaking, shipping, and contributing upstream." />
+        <SectionLabel index="// 01 — origin" title="Engineering as a long, deliberate compound." subtitle="Not a list of frameworks, a trajectory. Three years of building, breaking, shipping, and contributing upstream." />
 
         <div className="grid grid-cols-12 gap-6">
           {/* Left rail: principle cards */}
