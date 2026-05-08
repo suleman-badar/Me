@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { SectionLabel } from "./section-label";
-import { ArrowUpRight, MapPin, Search, Shield, Cloud, Database, Zap, Github, ExternalLink } from "lucide-react";
+import { ArrowUpRight, MapPin, Search, Shield, Cloud, Database, Zap, Github, ExternalLink, GitBranch } from "lucide-react";
 
 const SECONDARY_PROJECTS = [
   {
@@ -11,7 +11,7 @@ const SECONDARY_PROJECTS = [
     title: "Contact Management System",
     desc: "Self-hosted CRM with role-based auth, audit logs, and a normalised PostgreSQL schema designed to scale to millions of contacts.",
     github: "https://github.com/suleman-badar/Contact-App",
-    demo: "https://contact-app-pglo.onrender.com/",   
+    demo: "https://contact-app-pglo.onrender.com/",
     stack: ["Node", "Express", "PostgreSQL", "React", "JWT"],
     accent: "#3d8bff",
   },
@@ -83,7 +83,7 @@ const SECONDARY_PROJECTS = [
   },
 
   // ── PASTE YOUR ADDITIONAL PROJECTS BELOW THIS LINE ──────────────────────
-  
+
 ];
 
 // Add or remove category names to match the `category` fields above.
@@ -172,13 +172,32 @@ export function Projects() {
                 ))}
               </div>
 
-              <div className="mt-8 flex items-center gap-3">
-                <a href="https://find-here.vercel.app/" className="inline-flex items-center gap-2 bg-[#c6ff3d] text-black px-4 py-2.5 rounded-full font-mono text-[11px] uppercase tracking-wider">
-                  Live demo <ArrowUpRight className="w-3.5 h-3.5" />
+              <div className="mt-8 flex flex-wrap items-center gap-3">
+
+                <a
+                  href="https://find-here.vercel.app/"
+                  className="inline-flex items-center gap-2 bg-[#c6ff3d] text-black px-4 py-2.5 rounded-full font-mono text-[11px] uppercase tracking-wider"
+                >
+                  Live demo
+                  <ArrowUpRight className="w-3.5 h-3.5" />
                 </a>
-                <a href="https://github.com/suleman-badar/FindHere" className="inline-flex items-center gap-2 border border-white/15 px-4 py-2.5 rounded-full font-mono text-[11px] uppercase tracking-wider hover:border-white/30">
-                  <Github className="w-3.5 h-3.5" /> Source
+
+                <a
+                  href="https://github.com/suleman-badar/FindHere"
+                  className="inline-flex items-center gap-2 border border-white/15 px-4 py-2.5 rounded-full font-mono text-[11px] uppercase tracking-wider hover:border-white/30 transition-colors"
+                >
+                  <Github className="w-3.5 h-3.5" />
+                  Source
                 </a>
+
+                <a
+                  href="https://github.com/suleman-badar/FindHere/issues"
+                  className="group inline-flex items-center gap-2 border border-[#c6ff3d]/20 bg-[#c6ff3d]/[0.04] hover:bg-[#c6ff3d]/[0.08] hover:border-[#c6ff3d]/40 px-4 py-2.5 rounded-full font-mono text-[11px] uppercase tracking-wider text-[#c6ff3d] transition-all duration-300"
+                >
+                  <GitBranch className="w-3.5 h-3.5 group-hover:rotate-12 transition-transform" />
+                  Collaborate
+                </a>
+
               </div>
             </div>
 
@@ -237,8 +256,8 @@ export function Projects() {
                     <div className="mt-2 glass rounded-2xl divide-y divide-white/5 overflow-hidden">
                       {[
                         { n: "Café Aurora", d: "1.2 km · ★ 4.8" },
-                        { n: "Coffee Lab",  d: "2.4 km · ★ 4.6" },
-                        { n: "Foundry 21",  d: "3.0 km · ★ 4.5" },
+                        { n: "Coffee Lab", d: "2.4 km · ★ 4.6" },
+                        { n: "Foundry 21", d: "3.0 km · ★ 4.5" },
                       ].map((r, i) => (
                         <div key={r.n} className={`flex items-center gap-3 px-3.5 py-2.5 ${i === 0 ? "bg-[#c6ff3d]/8" : ""}`}>
                           <div className="w-7 h-7 rounded-md bg-white/5 flex items-center justify-center">
