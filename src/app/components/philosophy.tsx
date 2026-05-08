@@ -3,11 +3,11 @@ import { SectionLabel } from "./section-label";
 
 const TENETS = [
   { n: "01", t: "Build for the second order.", d: "The first version is easy. The system that survives growth, churn, and outages is the work." },
-  { n: "02", t: "Backend before flourish.", d: "Interfaces matter — but they sit on top of correctness, latency, and durability. Earn the surface." },
+  { n: "02", t: "Backend before flourish.", d: "Interfaces matter but they sit on top of correctness, latency, and durability. Earn the surface." },
   { n: "03", t: "Open source as gym.", d: "Public review and merge friction sharpen judgment in ways closed codebases never can." },
-  { n: "04", t: "Treat AI as a primitive.", d: "LLMs aren't magic. They're a new kind of system component — design for their failure modes, not their best days." },
+  { n: "04", t: "Treat AI as a primitive.", d: "LLMs aren't magic. They're a new kind of system component, design for their failure modes, not their best days." },
   { n: "05", t: "Ship, observe, iterate.", d: "Latency graphs and error budgets are honest critics. Listen to telemetry, not vibes." },
-  { n: "06", t: "Optimize for clarity.", d: "Code is read more than it's written. Naming, structure, and boundaries are senior-level decisions." },
+  { n: "06", t: "Optimize for clarity.", d: "Code is read more than it's written. Naming, structure, and boundaries are senior level decisions." },
 ];
 
 export function Philosophy() {
@@ -15,7 +15,7 @@ export function Philosophy() {
     <section id="philosophy" className="relative py-32 md:py-44">
       <div className="absolute inset-0 dot-bg opacity-30 mask-fade-y" />
       <div className="relative mx-auto max-w-[1400px] px-6 md:px-10">
-        <SectionLabel index="// 05 — philosophy" title="How I think about software." subtitle="Six tenets that shape every decision — from schema design to API contracts to which features to say no to." />
+        <SectionLabel index="// 05 — philosophy" title="How I think about software." subtitle="Six tenets that shape every decisions from schema design to API contracts to which features to say no to." />
 
         <div className="grid grid-cols-12 gap-4 md:gap-6">
           {TENETS.map((t, i) => (
@@ -48,7 +48,7 @@ export function Philosophy() {
           </div>
           <div className="col-span-12 lg:col-span-10">
             <p className="font-display text-3xl md:text-5xl leading-[1.1] max-w-4xl">
-              "Engineering is the discipline of being honest with yourself about what you don't know — and shipping anyway, instrumented."
+              "Engineering is the discipline of being honest with yourself about what you don't know, and shipping anyway, instrumented."
             </p>
             <p className="mt-5 font-mono text-[11px] uppercase tracking-[0.25em] text-white/45">— working notes / 2026</p>
           </div>
