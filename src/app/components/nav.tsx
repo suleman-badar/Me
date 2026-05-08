@@ -6,7 +6,7 @@ export function Nav() {
     { id: "work", label: "01 / Work" },
     { id: "stack", label: "02 / Stack" },
     { id: "open-source", label: "03 / OSS" },
-    { id: "philosophy", label: "04 / Philosophy" },
+    { id: "feedback", label: "04 / Signal" },
     { id: "contact", label: "05 / Contact" },
   ];
   return (

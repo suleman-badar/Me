@@ -93,7 +93,7 @@ function buildHeatmap(): HeatmapData {
   {
     const rand = seededRand(2468);
     let remaining = 255;
-    for (let i = 0; i < dates.length; i++) {
+    for (let i =1; i < dates.length; i++) {
       if (remaining <= 0) break;
       const date = dates[i];
       const recency = i / total52;                        // 0=oldest, 1=newest

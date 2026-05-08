@@ -7,6 +7,7 @@ import { Projects } from "./components/projects";
 import { OpenSource } from "./components/oss";
 import { Philosophy } from "./components/philosophy";
 import { Contact } from "./components/contact";
+import { Feedback } from "./components/feeback"
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
         <Projects />
         <OpenSource />
         <Philosophy />
+        <Feedback />
         <Contact />
       </main>
     </div>
