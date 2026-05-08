@@ -6,7 +6,6 @@ const ROLES = [
   "Backend Engineer",
   "MERN Stack Developer",
   "Open Source Contributor",
-  "AI / LLM Explorer",
   "Desktop Apps Developer",
 ];
 
@@ -68,7 +67,7 @@ export function Hero() {
               [ Engineer / Index 001 ]
             </motion.div>
             <h1 className="font-display leading-[0.86] text-[64px] md:text-[120px] xl:text-[148px]">
-              {["Suleman", "Badar."].map((w, i) => (
+              {["Suleman", "Badar"].map((w, i) => (
                 <motion.span
                   key={w}
                   initial={{ opacity: 0, y: 80, rotateX: 40 }}
@@ -105,7 +104,7 @@ export function Hero() {
               className="mt-10 max-w-xl text-white/60 leading-relaxed text-[15px]"
             >
               I architect resilient backend systems and ship considered, performant interfaces.
-              From distributed search pipelines to KDE open-source contributions — I build software
+              From distributed search pipelines to KDE open source contributionS. I build software
               that holds up under pressure.
             </motion.p>
 
@@ -173,7 +172,7 @@ export function Hero() {
               className="absolute top-4 left-0 glass rounded-xl p-3 w-[200px]"
             >
               <div className="flex items-center gap-2 text-[10px] font-mono uppercase tracking-wider text-white/55"><Activity className="w-3 h-3 text-[#c6ff3d]" /> uptime</div>
-              <div className="font-mono text-lg mt-1">99.982<span className="text-white/30">%</span></div>
+              <div className="font-mono text-lg mt-1">98.982<span className="text-white/30">%</span></div>
               <div className="mt-2 h-1.5 rounded-full bg-white/8 overflow-hidden">
                 <div className="h-full bg-[#c6ff3d]" style={{ width: "92%" }} />
               </div>
@@ -226,10 +225,10 @@ export function Hero() {
           </div>
           <div className="col-span-12 md:col-span-5 grid grid-cols-2 gap-4">
             {[
-              { k: "Years building", v: "4+" },
-              { k: "OSS Merge Requests", v: "20+" },
-              { k: "Production systems", v: "08" },
-              { k: "Languages fluent", v: "06" },
+              { k: "Years building", v: "3+" },
+              { k: "OSS Merge Requests", v: "10+" },
+              { k: "Production systems", v: "06" },
+              { k: "Languages fluent", v: "04" },
             ].map((m) => (
               <div key={m.k} className="glass rounded-xl p-4">
                 <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45">{m.k}</div>
