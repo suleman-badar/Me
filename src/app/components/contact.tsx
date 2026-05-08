@@ -26,31 +26,31 @@ export function Contact() {
             Let's build<br /><span className="text-stroke">something</span> <span className="text-[#c6ff3d]">durable.</span>
           </h2>
           <p className="mt-8 max-w-xl mx-auto text-white/55 leading-relaxed">
-            Open to startup engineering roles, serious open-source collaboration, and high-trust freelance work.
+            Open to startup engineering roles, serious open source collaboration, and high trust freelance work.
             Currently in <span className="text-white">UTC+5</span>, replying within <span className="text-white">24h</span>.
           </p>
         </motion.div>
 
         {/* CTA cluster */}
         <div className="mt-16 grid grid-cols-12 gap-4">
-          <a href="mailto:hello@suleman.dev" className="col-span-12 md:col-span-6 group glass rounded-2xl p-6 flex items-center justify-between hover:border-[#c6ff3d]/40 transition-colors">
+          <a href="mailto:suleman.badar.butt@gmail.com" className="col-span-12 md:col-span-6 group glass rounded-2xl p-6 flex items-center justify-between hover:border-[#c6ff3d]/40 transition-colors">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-xl bg-[#c6ff3d]/12 text-[#c6ff3d] flex items-center justify-center">
                 <Mail className="w-5 h-5" />
               </div>
               <div>
                 <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45">primary channel</div>
-                <div className="font-display text-xl mt-0.5">hello@suleman.dev</div>
+                <div className="font-display text-xl mt-0.5">suleman.badar.butt@gmail.com</div>
               </div>
             </div>
             <ArrowUpRight className="w-5 h-5 text-white/55 group-hover:text-[#c6ff3d] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all" />
           </a>
 
           {[
-            { i: <Github className="w-5 h-5" />, k: "github", v: "/suleman-badar" },
-            { i: <Linkedin className="w-5 h-5" />, k: "linkedin", v: "/in/suleman-badar" },
+            { i: <Github className="w-5 h-5" />, k: "github", v: "/suleman-badar"  , link:"https://github.com/suleman-badar" },
+            { i: <Linkedin className="w-5 h-5" />, k: "linkedin", v: "/in/suleman-badar", link:"https://linkedin.com/in/suleman-badar" },
           ].map((c) => (
-            <a key={c.k} href="#" className="col-span-12 md:col-span-3 group glass rounded-2xl p-6 hover:border-[#c6ff3d]/40 transition-colors">
+            <a key={c.k} href={c.link} className="col-span-12 md:col-span-3 group glass rounded-2xl p-6 hover:border-[#c6ff3d]/40 transition-colors">
               <div className="flex items-center justify-between">
                 <div className="w-10 h-10 rounded-xl bg-white/5 text-white flex items-center justify-center">{c.i}</div>
                 <ArrowUpRight className="w-4 h-4 text-white/55 group-hover:text-[#c6ff3d] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all" />

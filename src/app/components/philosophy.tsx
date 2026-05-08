@@ -15,7 +15,7 @@ export function Philosophy() {
     <section id="philosophy" className="relative py-32 md:py-44">
       <div className="absolute inset-0 dot-bg opacity-30 mask-fade-y" />
       <div className="relative mx-auto max-w-[1400px] px-6 md:px-10">
-        <SectionLabel index="// 05 — philosophy" title="How I think about software." subtitle="Six tenets that shape every decisions from schema design to API contracts to which features to say no to." />
+        <SectionLabel index="// 05 — philosophy" title="How I think about &ensp;&ensp; software." subtitle="Six tenets that shape every decisions from schema design to API contracts to which features to say no to." />
 
         <div className="grid grid-cols-12 gap-4 md:gap-6">
           {TENETS.map((t, i) => (
