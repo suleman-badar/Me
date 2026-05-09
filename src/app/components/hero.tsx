@@ -443,7 +443,7 @@ export function Hero() {
                   <Activity className="w-3 h-3 text-[#c6ff3d]" /> uptime
                 </div>
                 <div className="font-mono text-lg mt-1">
-                  99.982<span className="text-white/30">%</span>
+                  98.982<span className="text-white/30">%</span>
                 </div>
                 <div className="mt-2 h-1.5 rounded-full bg-white/8 overflow-hidden">
                   <motion.div
@@ -492,7 +492,7 @@ export function Hero() {
                 <div className="flex items-center gap-2 text-[10px] font-mono uppercase tracking-wider text-white/55">
                   <Cpu className="w-3 h-3 text-[#c6ff3d]" /> req/s
                 </div>
-                <div className="font-mono text-lg mt-1">12,847</div>
+                <div className="font-mono text-lg mt-1">1,847</div>
                 <div className="flex gap-1 mt-1.5">
                   {[0.6, 0.8, 0.5, 0.9, 0.7].map((o, i) => (
                     <motion.div
@@ -548,10 +548,10 @@ export function Hero() {
 
           <div className="col-span-12 md:col-span-5 grid grid-cols-2 gap-4">
             {[
-              { k: "Years building", v: "4+" },
-              { k: "OSS Merge Requests", v: "20+" },
-              { k: "Production systems", v: "08" },
-              { k: "Languages fluent", v: "06" },
+              { k: "Years building", v: "2+" },
+              { k: "OSS Merge Requests", v: "7+" },
+              { k: "Production systems", v: "02" },
+              { k: "Languages fluent", v: "03" },
             ].map((m) => (
               <div key={m.k} className="glass rounded-xl p-4">
                 <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45">
