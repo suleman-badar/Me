@@ -228,7 +228,7 @@ export function Feedback() {
         <SectionLabel
           index="// 07 — signal"
           title="Peer signal."
-          subtitle="Collaborators, teammates, and open source co-contributors. Approved reviews only the sheet is my moderation queue."
+          subtitle="Collaborators, teammates, and open source co-contributors."
         />
 
         {/* ── Review grid ───────────────────────────────────────── */}
@@ -251,7 +251,7 @@ export function Feedback() {
 
           {loadState === "done" && reviews.length === 0 && (
             <div className="text-center py-16 text-white/30 font-mono text-sm">
-              No approved reviews yet.
+              No reviews yet.
             </div>
           )}
         </div>
