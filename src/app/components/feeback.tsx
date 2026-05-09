@@ -465,12 +465,7 @@ export function Feedback() {
           transition={{ delay: 0.3, duration: 0.8 }}
           className="mt-10 flex items-start gap-3 max-w-lg"
         >
-          <div className="w-px h-8 bg-[#c6ff3d]/30 flex-shrink-0 mt-0.5" />
-          <p className="font-mono text-[11px] text-white/30 leading-relaxed">
-            Submissions land in a private Google Sheet. The{" "}
-            <span className="text-white/50">Approved</span> column is managed manuall, only
-            honest, relevant reviews get published. No spam, no PR fluff.
-          </p>
+         
         </motion.div>
 
       </div>
