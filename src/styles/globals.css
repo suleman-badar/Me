@@ -80,3 +80,15 @@ html, body, #root {
   -webkit-mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
   mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
 }
+
+
+/* Add this to your global CSS file (e.g. src/index.css or src/app/globals.css) */
+
+@keyframes node-pulse {
+  0%, 100% { transform: scale(1);   opacity: 0.12; }
+  50%       { transform: scale(1.9); opacity: 0.38; }
+}
+
+.animate-node-pulse {
+  animation: node-pulse 2.6s ease-in-out infinite;
+}
