@@ -7,7 +7,7 @@ import { SectionLabel } from "./section-label";
 const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyLLpHkC7mOWzK8djHW53CUEsR3wAijozmMjmH8ZQfVHfJJcwxfI5m8lYiaaJ8Brfo/exec";
 /* ─────────────────────────────────────────────────────────────────── */
 
-const IS_CONFIGURED = APPS_SCRIPT_URL !== "https://script.google.com/macros/s/AKfycbyLLpHkC7mOWzK8djHW53CUEsR3wAijozmMjmH8ZQfVHfJJcwxfI5m8lYiaaJ8Brfo/exec";
+const IS_CONFIGURED = true;
 
 /* ── Types ─────────────────────────────────────────────────────── */
 interface Review {
@@ -75,8 +75,8 @@ function StarRating({
 function ReviewCard({ review, index }: { review: Review; index: number }) {
   const date = review.timestamp
     ? new Intl.DateTimeFormat("en-US", { month: "short", year: "numeric" }).format(
-        new Date(review.timestamp)
-      )
+      new Date(review.timestamp)
+    )
     : "";
 
   return (
@@ -190,11 +190,22 @@ export function Feedback() {
        * POST via application/x-www-form-urlencoded to avoid CORS preflight.
        * Google Apps Script reads e.parameter.payload on the server side.
        */
-      await fetch(APPS_SCRIPT_URL, {
+
+      // console.log("Submitting form:", form);
+
+      const response = await fetch(APPS_SCRIPT_URL, {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
         body: `payload=${encodeURIComponent(JSON.stringify(form))}`,
       });
+
+      // console.log("Response status:", response.status);
+
+      const text = await response.text();
+
+      // console.log("Response body:", text);
       setSubmitState("success");
       setForm({ name: "", role: "", message: "", rating: 5 });
     } catch {
@@ -313,7 +324,7 @@ export function Feedback() {
                       <p className="mt-2 text-white/45 text-[14px] leading-relaxed max-w-sm">
                         Your feedback is queued for review. Once approved it'll appear on this page.
                         Thank you, genuinely :)
-                          </p>
+                      </p>
                     </div>
                     <button
                       onClick={() => setSubmitState("idle")}
@@ -345,9 +356,8 @@ export function Feedback() {
                           setErrors((p) => ({ ...p, name: undefined }));
                         }}
                         placeholder="Bilal Ahmed"
-                        className={`bg-white/[0.04] border rounded-xl px-4 py-3 text-sm text-white placeholder-white/20 outline-none focus:border-[#c6ff3d]/50 transition-colors ${
-                          errors.name ? "border-red-500/60" : "border-white/10"
-                        }`}
+                        className={`bg-white/[0.04] border rounded-xl px-4 py-3 text-sm text-white placeholder-white/20 outline-none focus:border-[#c6ff3d]/50 transition-colors ${errors.name ? "border-red-500/60" : "border-white/10"
+                          }`}
                       />
                       {errors.name && (
                         <span className="font-mono text-[10px] text-red-400">{errors.name}</span>
@@ -381,9 +391,8 @@ export function Feedback() {
                           setErrors((p) => ({ ...p, message: undefined }));
                         }}
                         placeholder="Describe what you worked on together and what stood out about the collaboration..."
-                        className={`bg-white/[0.04] border rounded-xl px-4 py-3 text-sm text-white placeholder-white/20 outline-none focus:border-[#c6ff3d]/50 transition-colors resize-none leading-relaxed ${
-                          errors.message ? "border-red-500/60" : "border-white/10"
-                        }`}
+                        className={`bg-white/[0.04] border rounded-xl px-4 py-3 text-sm text-white placeholder-white/20 outline-none focus:border-[#c6ff3d]/50 transition-colors resize-none leading-relaxed ${errors.message ? "border-red-500/60" : "border-white/10"
+                          }`}
                       />
                       <div className="flex items-center justify-between">
                         {errors.message ? (

@@ -7,7 +7,7 @@ const SECONDARY_PROJECTS = [
   {
     tag: "Productivity · Fullstack",
     category: "Fullstack",
-    year: "2024",
+    year: "2025",
     title: "Contact Management System",
     desc: "Self-hosted CRM with role-based auth, audit logs, and a normalised PostgreSQL schema designed to scale to millions of contacts.",
     github: "https://github.com/suleman-badar/Contact-App",
@@ -18,7 +18,7 @@ const SECONDARY_PROJECTS = [
   {
     tag: "Systems · C/C++",
     category: "Systems",
-    year: "2023",
+    year: "2025",
     title: "Multiplayer Networked Games",
     desc: "Low-level multiplayer games written in C/C++ with custom socket servers, game-state synchronisation, and lock-step simulation.",
     github: "https://github.com/suleman-badar?tab=repositories",
@@ -29,7 +29,7 @@ const SECONDARY_PROJECTS = [
   {
     tag: "OSS · Desktop",
     category: "OSS",
-    year: "2024",
+    year: "2025",
     title: "KDE Upstream Contributions",
     desc: "Patches, refactors, and feature work merged into KDE projects. Real world C++ / Qt workflow under public review.",
     github: "https://invent.kde.org/sulemanbadar",
@@ -40,7 +40,7 @@ const SECONDARY_PROJECTS = [
   {
     tag: "Frontend · React",
     category: "Side Projects",
-    year: "2024",
+    year: "2025",
     title: "Weather App",
     desc: "React powered weather dashboard that fetches real time conditions, temperature, and multi day forecasts for any city via a live weather API.",
     github: "https://github.com/suleman-badar/Weather-App",
@@ -51,7 +51,7 @@ const SECONDARY_PROJECTS = [
   {
     tag: "Frontend · Vanilla",
     category: "Side Projects",
-    year: "2024",
+    year: "2025",
     title: "Currency Converter",
     desc: "Responsive vanilla JS currency converter with live exchange rates across 150+ currencies. No frameworks, just clean DOM manipulation and a public rates API.",
     github: "https://github.com/suleman-badar/Currency-Converter--",
@@ -128,7 +128,7 @@ export function Projects() {
             <div className="col-span-12 lg:col-span-5 p-8 md:p-12">
               <div className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.3em] text-[#c6ff3d]">
                 <span className="w-2 h-2 rounded-full bg-[#c6ff3d] animate-pulse" />
-                Flagship · 2025 · Production
+                Flagship · 2025-2026 · Production
               </div>
               <h3 className="font-display text-5xl md:text-7xl leading-[0.92] mt-5">FindHere</h3>
               <p className="mt-5 text-white/65 leading-relaxed text-[15px]">
