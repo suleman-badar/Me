@@ -17,11 +17,11 @@ export default function App() {
       <main className="relative z-[2]">
         <Hero />
         <Marquee />
-        <About />
+        {/* <About /> */}
         <Stack />
         <Projects />
         <OpenSource />
-        <Philosophy />
+        {/* <Philosophy /> */}
         <Feedback />
         <Contact />
       </main>

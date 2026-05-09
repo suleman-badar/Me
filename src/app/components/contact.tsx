@@ -38,17 +38,31 @@ export function Contact() {
               <div className="w-12 h-12 rounded-xl bg-[#c6ff3d]/12 text-[#c6ff3d] flex items-center justify-center">
                 <Mail className="w-5 h-5" />
               </div>
-              <div>
-                <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45">primary channel</div>
-                <div className="font-display text-xl mt-0.5">suleman.badar.butt@gmail.com</div>
+
+
+
+
+              <div className="min-w-0">
+                <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45">
+                  primary channel
+                </div>
+
+                <div className="font-display text-sm sm:text-base md:text-xl mt-0.5 break-all">
+                  suleman.badar.butt@gmail.com
+                </div>
               </div>
+
+
             </div>
+
+
+
             <ArrowUpRight className="w-5 h-5 text-white/55 group-hover:text-[#c6ff3d] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all" />
           </a>
 
           {[
-            { i: <Github className="w-5 h-5" />, k: "github", v: "/suleman-badar"  , link:"https://github.com/suleman-badar" },
-            { i: <Linkedin className="w-5 h-5" />, k: "linkedin", v: "/in/suleman-badar", link:"https://linkedin.com/in/suleman-badar" },
+            { i: <Github className="w-5 h-5" />, k: "github", v: "/suleman-badar", link: "https://github.com/suleman-badar" },
+            { i: <Linkedin className="w-5 h-5" />, k: "linkedin", v: "/in/suleman-badar", link: "https://linkedin.com/in/suleman-badar" },
           ].map((c) => (
             <a key={c.k} href={c.link} className="col-span-12 md:col-span-3 group glass rounded-2xl p-6 hover:border-[#c6ff3d]/40 transition-colors">
               <div className="flex items-center justify-between">

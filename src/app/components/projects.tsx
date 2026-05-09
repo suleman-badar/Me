@@ -140,9 +140,9 @@ export function Projects() {
               {/* Architecture mini-flow */}
               <div className="mt-8 p-4 border border-white/10 rounded-xl bg-black/20">
                 <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 mb-3">/ system flow</div>
-                <div className="flex items-center justify-between gap-2 text-[10px] font-mono">
+                <div className="flex flex-wrap items-center justify-center gap-3 text-[10px] font-mono">
                   {["Client", "API", "Auth", "Index", "Mongo"].map((s, i) => (
-                    <div key={s} className="flex items-center gap-2">
+                    <div key={s} className="flex items-center gap-2 flex-shrink-0">
                       <div className="px-2 py-1.5 rounded-md border border-white/15 bg-white/5">{s}</div>
                       {i < 4 && <div className="w-3 h-px bg-[#c6ff3d]/60" />}
                     </div>
