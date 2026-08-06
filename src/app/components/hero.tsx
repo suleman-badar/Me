@@ -13,8 +13,8 @@ import { HeroOrb } from "./hero-orb";
 const ROLES = [
   "Backend Engineer",
   "MERN Stack Developer",
+  "AI Engineer",
   "Open Source Contributor",
-  "Desktop Apps Developer",
 ];
 
 // ─── Hook: detect mobile once on mount ───────────────────────────────────────
