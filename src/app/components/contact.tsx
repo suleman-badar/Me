@@ -3,7 +3,7 @@ import { Github, Linkedin, Mail, ArrowUpRight } from "lucide-react";
 
 export function Contact() {
   return (
-    <section id="contact" className="relative pt-32 md:pt-44 pb-16 overflow-hidden">
+    <section id="contact" className="relative pt-8 md:pt-12 pb-16 overflow-hidden">
       {/* Atmospheric */}
       <div className="absolute inset-0 grid-bg opacity-40 mask-fade-y" />
       <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] rounded-full blur-[160px] bg-[#c6ff3d]/15" />

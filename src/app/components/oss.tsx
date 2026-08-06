@@ -249,7 +249,7 @@ export function OpenSource() {
   ];
 
   return (
-    <section id="open-source" className="relative py-32 md:py-44">
+    <section id="open-source" className="relative py-8 md:py-12">
       <div className="absolute inset-0 grid-bg opacity-25 mask-fade-y" />
       <div className="relative mx-auto max-w-[1400px] px-6 md:px-10">
         <SectionLabel

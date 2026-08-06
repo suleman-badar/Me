@@ -215,7 +215,7 @@ export function Feedback() {
 
   /* ── Render ─────────────────────────────────────────────────── */
   return (
-    <section id="feedback" className="relative py-32 md:py-44 overflow-hidden">
+    <section id="feedback" className="relative py-8 md:py-12 overflow-hidden">
       {/* Atmospheric */}
       <div className="absolute inset-0 grid-bg opacity-35 mask-fade-y pointer-events-none" />
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#c6ff3d]/20 to-transparent" />

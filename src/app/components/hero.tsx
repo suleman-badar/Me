@@ -3,16 +3,10 @@ import {
   useMotionValue,
   useTransform,
   useSpring,
-  useScroll,
 } from "motion/react";
 import { useEffect, useRef, useState } from "react";
-import {
-  ArrowDown,
-  Cpu,
-  Activity,
-  GitBranch,
-  Terminal,
-} from "lucide-react";
+import { ArrowDown, Terminal } from "lucide-react";
+import { HeroOrb } from "./hero-orb";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
@@ -21,15 +15,6 @@ const ROLES = [
   "MERN Stack Developer",
   "Open Source Contributor",
   "Desktop Apps Developer",
-];
-
-const CUBE_FACES = [
-  "rotateY(0deg) translateZ(64px)",
-  "rotateY(90deg) translateZ(64px)",
-  "rotateY(180deg) translateZ(64px)",
-  "rotateY(270deg) translateZ(64px)",
-  "rotateX(90deg) translateZ(64px)",
-  "rotateX(-90deg) translateZ(64px)",
 ];
 
 // ─── Hook: detect mobile once on mount ───────────────────────────────────────
@@ -47,57 +32,10 @@ function useIsMobile(): boolean {
   return mobile;
 }
 
-// ─── Hook: prefers-reduced-motion ────────────────────────────────────────────
-function usePrefersReducedMotion(): boolean {
-  const [reduced, setReduced] = useState(false);
-  useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReduced(mq.matches);
-    const handler = () => setReduced(mq.matches);
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
-  }, []);
-  return reduced;
-}
-
-// ─── Orbit nodes ─────────────────────────────────────────────────────────────
-// Extracted to avoid re-rendering when parent motion values change.
-// Node glow uses CSS animation instead of per-node JS spring —
-// compositor-only, zero JS cost per frame.
-function OrbitNodes({ count }: { count: number }) {
-  return (
-    <>
-      {Array.from({ length: count }).map((_, i) => (
-        <div
-          key={i}
-          className="absolute top-1/2 left-1/2 w-2 h-2 -ml-1 -mt-1"
-          style={{ transform: `rotate(${i * (360 / count)}deg) translateY(-200px)` }}
-        >
-          {/* Pulse halo — pure CSS, GPU composited */}
-          <div
-            className="absolute -inset-2 rounded-full bg-[#c6ff3d]/15 animate-node-pulse"
-            style={{ animationDelay: `${i * 0.28}s` }}
-          />
-          {/* Node core — static glow via drop-shadow filter (composited) */}
-          <div
-            className="w-2 h-2 bg-[#c6ff3d] rounded-full relative z-10"
-            style={{ filter: "drop-shadow(0 0 7px rgba(198,255,61,0.36))" }}
-          />
-        </div>
-      ))}
-    </>
-  );
-}
-
 // ─── Hero ─────────────────────────────────────────────────────────────────────
 
 export function Hero() {
   const isMobile = useIsMobile();
-  const reducedMotion = usePrefersReducedMotion();
-  const disableScrollAnim = isMobile || reducedMotion;
-
-  // Node count: fewer on mobile to reduce compositor layers
-  const nodeCount = isMobile ? 6 : 8;
 
   /* ── Mouse parallax (desktop only) ──────────────────────────────────────── */
   const mx = useMotionValue(0);
@@ -132,53 +70,20 @@ export function Hero() {
     return () => clearInterval(t);
   }, []);
 
-  /* ── Scroll tracking ─────────────────────────────────────────────────────── */
-  const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"],
-  });
-
-  // Spring only computed on desktop — on mobile it's an unused motion value
-  // but hooks must be called unconditionally, so we gate the USAGE not the call.
-  const sp = useSpring(scrollYProgress, {
-    stiffness: 75,
-    damping: 28,
-    restDelta: 0.0003,
-  });
-
-  // All scroll-driven transforms reference `sp` on desktop, static 0 on mobile.
-  // We use useTransform unconditionally (rules of hooks) but pass
-  // a no-op range [0,0] → [0,0] on mobile so they never produce non-zero output.
-  const _zero = useMotionValue(0);
-  const src = disableScrollAnim ? _zero : sp;
-
-  const objectY      = useTransform(src, [0, 1], [0, 220]);
-  const objectRotX   = useTransform(src, [0, 1], [0, 3]);
-  const cubeScrollRX = useTransform(src, [0, 1], [0, 22]);
-  const cubeScrollRZ = useTransform(src, [0, 1], [0, -6]);
-  const ring1Rot     = useTransform(src, [0, 1], [0, 48]);
-  const ring2Rot     = useTransform(src, [0, 1], [0, -68]);
-  const ring3Rot     = useTransform(src, [0, 1], [0, 34]);
-  const ring1DepthY  = useTransform(src, [0, 1], [0, -7]);
-  const ring2DepthY  = useTransform(src, [0, 1], [0, 9]);
-  const ring3DepthY  = useTransform(src, [0, 1], [0, -4]);
-
   /* ── Render ──────────────────────────────────────────────────────────────── */
   return (
     <section
-      ref={sectionRef}
       id="top"
       onMouseMove={
         isMobile
           ? undefined // no mousemove listener on touch devices
           : (e) => {
-              const r = e.currentTarget.getBoundingClientRect();
-              mx.set((e.clientX - r.left) / r.width - 0.5);
-              my.set((e.clientY - r.top) / r.height - 0.5);
-            }
+            const r = e.currentTarget.getBoundingClientRect();
+            mx.set((e.clientX - r.left) / r.width - 0.5);
+            my.set((e.clientY - r.top) / r.height - 0.5);
+          }
       }
-      className="relative min-h-screen w-full overflow-hidden pt-28"
+      className="relative min-h-screen w-full overflow-hidden pt-28 pb-16"
     >
       {/* Atmospheric bg layers */}
       <div className="absolute inset-0 grid-bg opacity-50 mask-fade-y pointer-events-none" />
@@ -220,7 +125,7 @@ export function Hero() {
         {/* Main grid */}
         <div className="grid grid-cols-12 gap-6 mt-12 md:mt-20">
           {/* Left column */}
-          <div className="col-span-12 lg:col-span-8">
+          <div className="col-span-12 lg:col-span-7">
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
@@ -302,215 +207,12 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Right column — orbital system */}
-          <motion.div
-            style={
-              isMobile
-                ? { transformPerspective: 1200 }
-                : { rotateX: rx, rotateY: ry, transformPerspective: 1200 }
-            }
-            className="col-span-12 lg:col-span-4 relative h-[520px]"
-          >
-            {/* Physical object wrapper — slides on scroll (desktop only) */}
-            <motion.div
-              style={{
-                y: objectY,
-                rotateX: objectRotX,
-                transformPerspective: 900,
-                willChange: "transform",
-              }}
-              className="absolute inset-0"
-            >
-              {/* Orbital arena */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                {/*
-                  Force this subtree onto its own GPU compositor layer.
-                  translateZ(0) promotes it without affecting layout.
-                  This means ring/cube repaints stay isolated.
-                */}
-                <div
-                  className="relative w-[420px] h-[420px]"
-                  style={{ transform: "translateZ(0)", willChange: "transform" }}
-                >
-                  {/* Ring 1 — will-change lets browser pre-promote the layer */}
-                  <motion.div
-                    style={{ rotateZ: ring1Rot, y: ring1DepthY, willChange: "transform" }}
-                    className="absolute inset-0"
-                  >
-                    <div className="absolute inset-0 rounded-full border border-white/[0.08] orbit-slow" />
-                  </motion.div>
+          {/* ── Right column: network-orb composition ─────────── */}
+          <div className="col-span-12 lg:col-span-5 relative mt-16 lg:mt-0 lg:-mr-4">
+            <HeroOrb />
+          </div>
 
-                  {/* Ring 2 */}
-                  <motion.div
-                    style={{ rotateZ: ring2Rot, y: ring2DepthY, willChange: "transform" }}
-                    className="absolute inset-8"
-                  >
-                    <div className="absolute inset-0 rounded-full border border-white/[0.11] orbit-rev" />
-                  </motion.div>
 
-                  {/* Ring 3 */}
-                  <motion.div
-                    style={{ rotateZ: ring3Rot, y: ring3DepthY, willChange: "transform" }}
-                    className="absolute inset-16"
-                  >
-                    <div className="absolute inset-0 rounded-full border border-[#c6ff3d]/[0.22] orbit-slow" />
-                  </motion.div>
-
-                  {/* Radar sweep */}
-                  <div
-                    className="absolute inset-0 rounded-full overflow-hidden pointer-events-none"
-                    style={{ opacity: 0.16 }}
-                  >
-                    <motion.div
-                      animate={{ rotate: [0, 360] }}
-                      transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-                      className="absolute inset-0"
-                    >
-                      <div
-                        className="absolute left-1/2 top-0 h-1/2 w-px"
-                        style={{
-                          background:
-                            "linear-gradient(to bottom, transparent 0%, #c6ff3d 60%, transparent 100%)",
-                          transformOrigin: "bottom center",
-                        }}
-                      />
-                    </motion.div>
-                  </div>
-
-                  {/* Orbit nodes — memoised component, CSS-only glow */}
-                  <OrbitNodes count={nodeCount} />
-
-                  {/* Core wireframe cube */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="absolute w-36 h-36 rounded-full blur-[50px] bg-[#c6ff3d]/[0.05]" />
-                    <motion.div
-                      animate={{ rotateY: [0, 360] }}
-                      transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
-                      style={{
-                        rotateX: cubeScrollRX,
-                        rotateZ: cubeScrollRZ,
-                        transformStyle: "preserve-3d",
-                        transformPerspective: 1000,
-                        willChange: "transform",
-                      }}
-                      className="relative w-32 h-32"
-                    >
-                      {CUBE_FACES.map((transform, i) => (
-                        <div
-                          key={i}
-                          className="absolute inset-0 border border-[#c6ff3d]/38 bg-[#c6ff3d]/[0.03]"
-                          style={{ transform }}
-                        />
-                      ))}
-                      {CUBE_FACES.map((transform, i) => (
-                        <div
-                          key={`g${i}`}
-                          className="absolute inset-0"
-                          style={{
-                            transform,
-                            background:
-                              "linear-gradient(135deg, rgba(198,255,61,0.07) 0%, transparent 55%)",
-                          }}
-                        />
-                      ))}
-                    </motion.div>
-                  </div>
-
-                  {/* HUD corner ticks */}
-                  {(
-                    [
-                      "top-0 left-0 border-t border-l",
-                      "top-0 right-0 border-t border-r",
-                      "bottom-0 left-0 border-b border-l",
-                      "bottom-0 right-0 border-b border-r",
-                    ] as const
-                  ).map((cls, i) => (
-                    <div
-                      key={i}
-                      className={`absolute w-4 h-4 border-[#c6ff3d]/28 ${cls}`}
-                    />
-                  ))}
-                </div>
-              </div>
-
-              {/* Telemetry cards */}
-              <motion.div
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-4 left-0 glass rounded-xl p-3 w-[200px]"
-              >
-                <div className="flex items-center gap-2 text-[10px] font-mono uppercase tracking-wider text-white/55">
-                  <Activity className="w-3 h-3 text-[#c6ff3d]" /> uptime
-                </div>
-                <div className="font-mono text-lg mt-1">
-                  98.982<span className="text-white/30">%</span>
-                </div>
-                <div className="mt-2 h-1.5 rounded-full bg-white/8 overflow-hidden">
-                  <motion.div
-                    className="h-full bg-[#c6ff3d] rounded-full"
-                    initial={{ width: "0%" }}
-                    animate={{ width: "92%" }}
-                    transition={{
-                      delay: 1.2,
-                      duration: 1.4,
-                      ease: [0.22, 0.61, 0.36, 1],
-                    }}
-                  />
-                </div>
-              </motion.div>
-
-              <motion.div
-                animate={{ y: [0, 12, 0] }}
-                transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute bottom-10 right-0 glass rounded-xl p-3 w-[210px]"
-              >
-                <div className="flex items-center gap-2 text-[10px] font-mono uppercase tracking-wider text-white/55">
-                  <GitBranch className="w-3 h-3 text-[#c6ff3d]" /> commits/30d
-                </div>
-                <div className="flex items-end gap-1 mt-2 h-10">
-                  {[3, 5, 2, 7, 4, 6, 8, 5, 9, 6, 4, 7, 5, 8].map((v, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ height: 0 }}
-                      animate={{ height: `${v * 10}%` }}
-                      transition={{
-                        delay: 1.4 + i * 0.06,
-                        duration: 0.5,
-                        ease: "easeOut",
-                      }}
-                      className="flex-1 bg-[#c6ff3d]/70 rounded-sm"
-                    />
-                  ))}
-                </div>
-              </motion.div>
-
-              <motion.div
-                animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute bottom-40 left-2 glass rounded-xl p-3 w-[180px]"
-              >
-                <div className="flex items-center gap-2 text-[10px] font-mono uppercase tracking-wider text-white/55">
-                  <Cpu className="w-3 h-3 text-[#c6ff3d]" /> req/s
-                </div>
-                <div className="font-mono text-lg mt-1">1,847</div>
-                <div className="flex gap-1 mt-1.5">
-                  {[0.6, 0.8, 0.5, 0.9, 0.7].map((o, i) => (
-                    <motion.div
-                      key={i}
-                      animate={{ opacity: [o, 1, o] }}
-                      transition={{
-                        duration: 1.2,
-                        repeat: Infinity,
-                        delay: i * 0.2,
-                        ease: "easeInOut",
-                      }}
-                      className="flex-1 h-0.5 bg-[#c6ff3d] rounded-full"
-                    />
-                  ))}
-                </div>
-              </motion.div>
-            </motion.div>
-          </motion.div>
         </div>
 
         {/* Terminal strip */}
