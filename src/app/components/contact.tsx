@@ -1,5 +1,38 @@
 import { motion } from "motion/react";
-import { Github, Linkedin, Mail, ArrowUpRight } from "lucide-react";
+import {
+  Github,
+  Linkedin,
+  Mail,
+  ArrowUpRight,
+  MessageCircle,
+} from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
+
+
+const CONTACT_LINKS = [
+  {
+    icon: <FaWhatsapp className="w-5 h-5" />,
+    key: "whatsapp",
+    value: "Quick reply",
+    link: "https://wa.me/923174220424",
+    span: "md:col-span-3",
+  },
+  {
+    icon: <Github className="w-5 h-5" />,
+    key: "github",
+    value: "/suleman-badar",
+    link: "https://github.com/suleman-badar",
+    span: "md:col-span-2",
+  },
+  {
+    icon: <Linkedin className="w-5 h-5" />,
+    key: "linkedin",
+    value: "/in/suleman-badar",
+    link: "https://linkedin.com/in/suleman-badar",
+    span: "md:col-span-2",
+  },
+
+];
 
 export function Contact() {
   return (
@@ -33,7 +66,7 @@ export function Contact() {
 
         {/* CTA cluster */}
         <div className="mt-16 grid grid-cols-12 gap-4">
-          <a href="mailto:suleman.badar.butt@gmail.com" className="col-span-12 md:col-span-6 group glass rounded-2xl p-6 flex items-center justify-between hover:border-[#c6ff3d]/40 transition-colors">
+          <a href="mailto:suleman.badar.butt@gmail.com" className="col-span-12 md:col-span-5 group glass rounded-2xl p-6 flex items-center justify-between hover:border-[#c6ff3d]/40 transition-colors">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-xl bg-[#c6ff3d]/12 text-[#c6ff3d] flex items-center justify-center">
                 <Mail className="w-5 h-5" />
@@ -60,17 +93,28 @@ export function Contact() {
             <ArrowUpRight className="w-5 h-5 text-white/55 group-hover:text-[#c6ff3d] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all" />
           </a>
 
-          {[
-            { i: <Github className="w-5 h-5" />, k: "github", v: "/suleman-badar", link: "https://github.com/suleman-badar" },
-            { i: <Linkedin className="w-5 h-5" />, k: "linkedin", v: "/in/suleman-badar", link: "https://linkedin.com/in/suleman-badar" },
-          ].map((c) => (
-            <a key={c.k} href={c.link} className="col-span-12 md:col-span-3 group glass rounded-2xl p-6 hover:border-[#c6ff3d]/40 transition-colors">
+          {CONTACT_LINKS.map((c) => (
+            <a
+              key={c.key}
+              href={c.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`col-span-12 ${c.span} group glass rounded-2xl p-6 hover:border-[#c6ff3d]/40 transition-colors`}            >
               <div className="flex items-center justify-between">
-                <div className="w-10 h-10 rounded-xl bg-white/5 text-white flex items-center justify-center">{c.i}</div>
+                <div className="w-10 h-10 rounded-xl bg-white/5 text-white flex items-center justify-center">
+                  {c.icon}
+                </div>
+
                 <ArrowUpRight className="w-4 h-4 text-white/55 group-hover:text-[#c6ff3d] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all" />
               </div>
-              <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 mt-5">{c.k}</div>
-              <div className="font-display text-lg mt-0.5">{c.v}</div>
+
+              <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/45 mt-5">
+                {c.key}
+              </div>
+
+              <div className="font-display text-lg mt-0.5">
+                {c.value}
+              </div>
             </a>
           ))}
         </div>
