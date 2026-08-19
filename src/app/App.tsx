@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/react";
 import { Nav } from "./components/nav";
 import { Hero } from "./components/hero";
 import { Marquee } from "./components/marquee";
@@ -25,6 +26,7 @@ export default function App() {
         <Feedback />
         <Contact />
       </main>
+      <Analytics />
     </div>
   );
 }
